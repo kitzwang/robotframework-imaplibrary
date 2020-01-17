@@ -341,7 +341,7 @@ class ImapLibrary(object):
         | Walk Multipart Email | INDEX |
         """
         if not self._is_walking_multipart(email_index):
-            data = self._imap.uid('fetch', email_index, '(RFC822)')[1][0][1]
+            data = self._imap.uid('fetch', email_index, '(RFC822)')[1][0][1].decode('utf-8')
             msg = message_from_string(data)
             self._start_multipart_walk(email_index, msg)
         try:
